@@ -1,6 +1,7 @@
 import React from 'react';
 import { Sidebar, Segment, Menu, Image, Header } from 'semantic-ui-react';
-import List from './List';
+import ListItem from './ListItem';
+import Firebase from './Firebase';
 
 class SidebarLeft extends React.Component {
   renderSiteList() {
@@ -22,7 +23,8 @@ class SidebarLeft extends React.Component {
         <Sidebar.Pusher>
           <Segment basic>
             <Header as='h3'>Application Content</Header>
-            <List />
+            <ListItem />
+            <Firebase />
           </Segment>
         </Sidebar.Pusher>
       </div>
