@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const config = require('../config');
+const config = require('../../config');
 const user = config.postgres.user;
 const pw = config.postgres.pw;
 const db = 'news' || config.postgres.db;
@@ -41,14 +41,13 @@ const ArticleDetails = sequelize.define('details', {
   kids: { type: Sequelize.ARRAY(Sequelize.INTEGER) }
 });
 
+/***
+  Controllers for hankernews
+**/
+
 module.exports = {
   addIds: function(num) {
     Article.findOrCreate({ where: { articleId: num }})
-    /*Article.sync().then(() => {
-      return Article.create({
-        articleId: num
-      });
-    });*/
   },
   addArticleDetails: function(val) {
     ArticleDetails.sync().then(() => {

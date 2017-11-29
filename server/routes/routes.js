@@ -1,10 +1,12 @@
 const axios = require('axios');
-const sequelize = require('../schema/ids.mysql.js');
-const { addIds, addArticleDetails, getArticles } = require('../schema/ids.mysql.js');
+const Feed = require('rss-to-json');
+// const sequelize = require('../models/hackernews.psql.js');
+const { addIds, addArticleDetails, getArticles } = require('../models/hackernews.psql.js');
+const { create, get } = require('../models/hacksmozilla.psql.js');
 
 module.exports = (app) => {
   app.get('/hackernews', (req, res) => {
-    const topStories = 'https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty';
+    const topStories = 'https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty';
     axios.get(topStories)
       .then(response => {
         // console.log('response: ', response.data)
@@ -39,6 +41,7 @@ module.exports = (app) => {
           }
           //console.log('details: ', details)
           addArticleDetails(details);
+          res.send('Records created');
         })
         .catch(err => {
           console.error(err);
@@ -51,6 +54,20 @@ module.exports = (app) => {
       //console.log("ARTICLES: ", articles)
       res.send(articles);
     });
+  })
+
+  app.get('/hacksmozilla', (req, res) => {
+    // get rss feed
+    Feed.load('https://hacks.mozilla.org/feed/', function(err, rss) {
+      // console.log('RSS: ', rss.items[0]);
+      const articles = rss.items;
+      articles.map(article => {
+        create(article);
+      })
+      const feed = get();
+      console.log("FEED: ", feed)
+      res.send(rss);
+    })
   })
 
 
