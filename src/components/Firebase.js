@@ -1,10 +1,12 @@
 import React from 'react';
 import axios from 'axios';
-import ListItem from './ListItem';
 import { List } from 'semantic-ui-react';
+import ListItem from './ListItem';
 //import { fetchGet } from '../../util/fetchHelper';
 // story uri: https://hacker-news.firebaseio.com/v0/item/8863.json?print=pretty
 // top stories uri: https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty
+
+const ROOT = 'http://localhost:3090';
 
 class FirebaseAccess extends React.Component {
   constructor(props) {
@@ -17,36 +19,50 @@ class FirebaseAccess extends React.Component {
   }
 
   componentDidMount() {
-    const topStories = 'https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty';
-    const ROOT = 'http://localhost:3090';
-
-    axios.get(`${ROOT}/hackernews`)
+    //const topStories = 'https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty';
+    /*axios.get(`${ROOT}/hackernews`)
       .then(response => {
         console.log('response: ', response)
         this.setState({ ids: response.data });
-      })
+      })*/
+
+      axios.get(`${ROOT}/articles`)
+        .then(response => {
+          console.log('RESPONSE: ', response);
+          this.setState({ articles: response.data });
+        })
+
   }
 
-  componentDidUpdate() {
-    // console.log('this.state: ', this.state)
-    const ids = this.state.ids;
-
-    for(let i = 0; i < 20 ; i++) {
-      const storyUrl = `https://hacker-news.firebaseio.com/v0/item/${ids[i]}.json?print=pretty`;
-
-      axios.get(storyUrl)
+  componentDidUpdate(nextProps, nextState) {
+    /*console.log('nextProps: ', nextProps)
+    console.log('nextState: ', nextState)
+    console.log('this.state: ', this.state);*/
+    if(this.state.ids.length !== 0 ) {
+      const ids = this.state.ids;
+      axios.post(`${ROOT}/insert`, { ids })
         .then(response => {
-          console.log("respon: ", response.data.title)
-          const title = response.data.title;
-          // this.setState({ articles: title });
+          console.log('response: ', response)
         })
     }
-
   }
 
   render() {
-    console.log('this.state: ', this.state);
-    
+    // console.log('this.state: ', this.state);
+    if(this.state.articles.length !== 0) {
+      const articles = this.state.articles;
+      return articles.map(article => {
+        // const details = articles[i];
+        const id = article.id;
+        
+        return (
+          <div key={id}>
+            <ListItem items={article} />
+          </div>
+        )
+      })
+    }
+
     return (
       <div>
       FirebaseAccess
