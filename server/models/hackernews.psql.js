@@ -1,21 +1,6 @@
 const Sequelize = require('sequelize');
-const config = require('../../config');
-const user = config.postgres.user;
-const pw = config.postgres.pw;
-const db = 'news' || config.postgres.db;
-const host = config.postgres.host;
-const sequelize = new Sequelize(`postgres://${user}:${pw}@${host}:5432/${db}`);
+const sequelize = require('../dbConnection').sequelize;
 
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
-
-// id model
 const Article = sequelize.define('article', {
   id: { 
     allowNull: false,
@@ -41,10 +26,6 @@ const ArticleDetails = sequelize.define('details', {
   kids: { type: Sequelize.ARRAY(Sequelize.INTEGER) }
 });
 
-/***
-  Controllers for hankernews
-**/
-
 module.exports = {
   addIds: function(num) {
     Article.findOrCreate({ where: { articleId: num }})
@@ -66,7 +47,6 @@ module.exports = {
   getArticles: function() {
     return ArticleDetails.findAll({ limit: 50 })
       .then(article => {
-        // console.log('Article: ', article)
         return article;
       });
   }

@@ -16,19 +16,18 @@ class HacksMozilla extends React.Component {
     axios.get(`${ROOT}/hacksmozilla`)
       .then(response => {
         //console.log('REPONSE: ', response.data.items)
-        this.setState({ articles: response.data.items })
+        this.setState({ articles: response.data })
       })
   }
 
   render() {
+    // console.log('this.state: ', this.state.articles)
     if(this.state.articles.length !== 0) {
       // console.log('hacksmozilla: ', this.state.articles)
       const articles = this.state.articles;
 
       return articles.map(article => {
-        let time = article.created / 1000;
-        // console.log("TIME ", time)
-        time = moment.unix(time).format("ddd, MMM D YYYY");
+        const time = moment.unix(time).format("ddd, MMM D YYYY");
         const title = article.title;
         const url = article.url;
         const description = article.description;
@@ -52,11 +51,3 @@ class HacksMozilla extends React.Component {
 }
 
 export default HacksMozilla;
-
-
-/*return (
-    <a className="item-container" href={url} target="_blank">
-      <h2>{title}</h2>
-      <p>{site} by <span>{author}</span> {time}</p>
-    </a>
-  )*/

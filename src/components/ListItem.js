@@ -19,8 +19,8 @@ const ListItem = ({ items, site }) => {
       </a>
     )
   } else {
-    let time = items.created / 1000;
-    // console.log("TIME ", time)
+    let time = items.time;
+     //console.log("TIME ", items)
     time = moment.unix(time).format("ddd, MMM D YYYY");
     const title = items.title;
     const url = items.url;

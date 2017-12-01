@@ -1,19 +1,5 @@
 const Sequelize = require('sequelize');
-const config = require('../../config');
-const user = config.postgres.user;
-const pw = config.postgres.pw;
-const db = 'news' || config.postgres.db;
-const host = config.postgres.host;
-const sequelize = new Sequelize(`postgres://${user}:${pw}@${host}:5432/${db}`);
-
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
+const sequelize = require('../dbConnection').sequelize;
 
 const HacksMozilla = sequelize.define('hacksmozilla', {
   id: { 
@@ -27,21 +13,8 @@ const HacksMozilla = sequelize.define('hacksmozilla', {
   description: { type: Sequelize.TEXT }
 });
 
-const Testing = sequelize.define('test', {
-  id: {
-    autoIncrement: true,
-    primaryKey: true,
-    type: Sequelize.INTEGER
-  }
-})
-
-
 module.exports = {
   create: function(val) {
-    /*Testing.sync().then(() => {
-      return Testing.create();
-    })*/
-    // console.log("VALUE: ", val.title)
     const inSeconds = val.created / 1000;
     HacksMozilla.sync().then(() => {
       return HacksMozilla.findOrCreate({ where: {
@@ -53,9 +26,9 @@ module.exports = {
     })
   },
   get: function() {
-    HacksMozilla.findAll()
+    return HacksMozilla.findAll()
       .then(article => {
-        return article
-      })
+        return article;
+      });
   }
 }

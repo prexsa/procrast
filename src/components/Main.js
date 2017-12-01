@@ -20,18 +20,14 @@ class Main extends React.Component {
     let that = this;
     axios.all([this.getHackernews(), this.getHacksmozilla()])
       .then(axios.spread(function (hackernews, hacksmozilla) {
-        // console.log('hackernews: ', hackernews)
-        //console.log('hacksmozilla: ', hacksmozilla)
         const news = hackernews.data;
-        const mozilla = hacksmozilla.data.items;
+        const mozilla = hacksmozilla.data;
 
         let sorted = news.concat(mozilla).sort((a,b) => {
           return a.time - (b.created / 1000);
         });
 
-        // console.log("sorted: ", sorted)
         that.setState({ articles: sorted })
-
       }))
   }
 
@@ -44,6 +40,7 @@ class Main extends React.Component {
   }
 
   render() {
+    // console.log('state: ', this.state.articles)
     if(this.state.articles.length !== 0) {
       const articles = this.state.articles;
       // console.log("ARTICLES: ", articles)

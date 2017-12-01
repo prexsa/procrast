@@ -3,7 +3,7 @@ const Feed = require('rss-to-json');
 // const sequelize = require('../models/hackernews.psql.js');
 const { addIds, addArticleDetails, getArticles } = require('../models/hackernews.psql.js');
 const { create, get } = require('../models/hacksmozilla.psql.js');
-
+console.log('create: ', create)
 module.exports = (app) => {
   app.get('/hackernews', (req, res) => {
     const topStories = 'https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty';
@@ -57,6 +57,14 @@ module.exports = (app) => {
   })
 
   app.get('/hacksmozilla', (req, res) => {
+      get()
+        .then(articles => {
+          console.log('ARTICLES: ', articles)
+          res.send(articles);
+        });
+  })
+
+  app.get('/feed-hackmozilla', (req, res) => {
     // get rss feed
     Feed.load('https://hacks.mozilla.org/feed/', function(err, rss) {
       // console.log('RSS: ', rss.items[0]);
@@ -64,9 +72,7 @@ module.exports = (app) => {
       articles.map(article => {
         create(article);
       })
-      const feed = get();
-      //console.log("FEED: ", feed)
-      res.send(rss);
+      res.send('Hack Mozilla Article Record Created.')
     })
   })
 
