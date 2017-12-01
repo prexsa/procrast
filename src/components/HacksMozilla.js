@@ -11,6 +11,7 @@ class HacksMozilla extends React.Component {
       articles: []
     }
   }
+
   componentDidMount() {
     axios.get(`${ROOT}/hacksmozilla`)
       .then(response => {
@@ -21,7 +22,7 @@ class HacksMozilla extends React.Component {
 
   render() {
     if(this.state.articles.length !== 0) {
-      console.log('this.state: ', this.state.articles)
+      // console.log('hacksmozilla: ', this.state.articles)
       const articles = this.state.articles;
 
       return articles.map(article => {
@@ -36,7 +37,7 @@ class HacksMozilla extends React.Component {
           <a key={title} className="item-container" href={url} target="_blank">
             <h2>{title}</h2>
             <p>{description}</p>
-            <p>{time}</p>
+            <p>Hacks Mozilla {time}</p>
           </a>
         )
       })

@@ -44,12 +44,12 @@ module.exports = {
     // console.log("VALUE: ", val.title)
     const inSeconds = val.created / 1000;
     HacksMozilla.sync().then(() => {
-      return HacksMozilla.create({
+      return HacksMozilla.findOrCreate({ where: {
         title: val.title,
         url: val.url,
         time: inSeconds,
         description: val.description
-      });
+      }});
     })
   },
   get: function() {

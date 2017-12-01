@@ -3,10 +3,11 @@ import { Sidebar, Segment, Menu, Image, Header } from 'semantic-ui-react';
 import ListItem from './ListItem';
 import HackerNews from './HackerNews';
 import HacksMozilla from './HacksMozilla';
+import Main from './Main';
 
 class SidebarLeft extends React.Component {
   renderSiteList() {
-  const sites = ['Hacker News', 'Smashing Magazine', 'Slashdot', 'Medium', 'lifehacker', 'scotch.io'];
+  const sites = ['Hacker News', 'Smashing Magazine', 'Slashdot', 'Medium', 'lifehacker', 'scotch.io', 'hacks mozilla'];
   return sites.map(name => {
     return (
       <Menu.Item key={name}>{name}</Menu.Item>
@@ -24,8 +25,10 @@ class SidebarLeft extends React.Component {
         <Sidebar.Pusher>
           <Segment basic>
             <Header as='h3'>Application Content</Header>
+            <Main />
+            <hr />
             <HacksMozilla />
-            <br />
+            <hr />
             <HackerNews />
           </Segment>
         </Sidebar.Pusher>

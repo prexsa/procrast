@@ -65,7 +65,7 @@ module.exports = (app) => {
         create(article);
       })
       const feed = get();
-      console.log("FEED: ", feed)
+      //console.log("FEED: ", feed)
       res.send(rss);
     })
   })

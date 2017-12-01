@@ -28,7 +28,7 @@ class HackerNews extends React.Component {
   }
 
   render() {
-    // console.log('this.state: ', this.state);
+    // console.log('hackernews: ', this.state.articles);
     if(this.state.articles.length !== 0) {
       const articles = this.state.articles;
 
