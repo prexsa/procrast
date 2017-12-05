@@ -44,7 +44,7 @@ router.post('/feed-hackernews', (req, res) => {
 
 router.get('/', (req, res) => {
   getArticles().then(articles => {
-    console.log("ARTICLES: ", articles)
+    //console.log("ARTICLES: ", articles)
     res.send(articles);
   });
 });

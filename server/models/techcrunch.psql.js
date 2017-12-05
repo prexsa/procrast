@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../dbConnection');
 
-const HacksMozilla = sequelize.define('hacksmozilla', {
-  id: { 
+const TechCrunch = sequelize.define('techcrunch', {
+  id: {
     autoIncrement: true,
     primaryKey: true,
     type: Sequelize.INTEGER
@@ -16,8 +16,8 @@ const HacksMozilla = sequelize.define('hacksmozilla', {
 module.exports = {
   createRecord: function(val) {
     const inSeconds = val.created / 1000;
-    HacksMozilla.sync().then(() => {
-      return HacksMozilla.findOrCreate({ where: {
+    TechCrunch.sync().then(() => {
+      return TechCrunch.findOrCreate({ where: {
         title: val.title,
         url: val.url,
         time: inSeconds,
@@ -26,7 +26,7 @@ module.exports = {
     })
   },
   getArticles: function() {
-    return HacksMozilla.findAll()
+    return TechCrunch.findAll()
       .then(article => {
         return article;
       });

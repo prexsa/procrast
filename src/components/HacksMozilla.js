@@ -23,11 +23,11 @@ class HacksMozilla extends React.Component {
   render() {
     // console.log('this.state: ', this.state.articles)
     if(this.state.articles.length !== 0) {
-      // console.log('hacksmozilla: ', this.state.articles)
+      //console.log('hacksmozilla: ', this.state.articles)
       const articles = this.state.articles;
 
       return articles.map(article => {
-        const time = moment.unix(time).format("ddd, MMM D YYYY");
+        const time = moment.unix(article.time).format("ddd, MMM D YYYY");
         const title = article.title;
         const url = article.url;
         const description = article.description;

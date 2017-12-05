@@ -4,15 +4,16 @@ import ListItem from './ListItem';
 import HackerNews from './HackerNews';
 import HacksMozilla from './HacksMozilla';
 import Main from './Main';
+import TechCrunch from './TechCrunch';
 
 class SidebarLeft extends React.Component {
   renderSiteList() {
-  const sites = ['Hacker News', 'Smashing Magazine', 'Slashdot', 'Medium', 'lifehacker', 'scotch.io', 'hacks mozilla'];
-  return sites.map(name => {
-    return (
-      <Menu.Item key={name}>{name}</Menu.Item>
-      )
-    })
+    const sites = ['Hacker News', 'Smashing Magazine', 'Tech Crunch', 'Slashdot', 'Medium', 'lifehacker', 'scotch.io', 'hacks mozilla'];
+    return sites.map(name => {
+      return (
+        <Menu.Item key={name}>{name}</Menu.Item>
+        )
+      })
   }
   
   render() {
@@ -26,11 +27,8 @@ class SidebarLeft extends React.Component {
         <Sidebar.Pusher>
           <Segment basic>
             <Header as='h3'>Application Content</Header>
+            <TechCrunch />
             <Main />
-            <hr />
-            <HacksMozilla />
-            <hr />
-            <HackerNews />
           </Segment>
         </Sidebar.Pusher>
       </div>

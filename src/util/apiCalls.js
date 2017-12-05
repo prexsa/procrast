@@ -20,8 +20,12 @@ const hackerNewsArticleDetails = (ids) => {
 }
 
 // Hacks Mozilla 
-const hackMozillaFeed = () => {
-  axios.get('/hacksmozilla/feed-hackmozilla')
+export const hackMozillaFeed = () => {
+  axios.get(`${ROOT}/hacksmozilla/feed-hackmozilla`)
+}
+
+export const techCrunchFeed = () => {
+  return axios.get(`${ROOT}/techcrunch/scrape`)
 }
 
 
