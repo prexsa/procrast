@@ -36,7 +36,7 @@ class Main extends React.Component {
   }
 
   getHackernews() {
-    return axios.get(`${ROOT}/articles`)
+    return axios.get(`${ROOT}/hackernews`)
   }
 
   render() {

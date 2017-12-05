@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../dbConnection').sequelize;
+const sequelize = require('../dbConnection');
 
 const HacksMozilla = sequelize.define('hacksmozilla', {
   id: { 
@@ -14,7 +14,7 @@ const HacksMozilla = sequelize.define('hacksmozilla', {
 });
 
 module.exports = {
-  create: function(val) {
+  createRecord: function(val) {
     const inSeconds = val.created / 1000;
     HacksMozilla.sync().then(() => {
       return HacksMozilla.findOrCreate({ where: {
@@ -25,10 +25,12 @@ module.exports = {
       }});
     })
   },
-  get: function() {
+  getArticles: function() {
     return HacksMozilla.findAll()
       .then(article => {
         return article;
       });
   }
 }
+
+

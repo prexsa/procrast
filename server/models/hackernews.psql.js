@@ -1,17 +1,7 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../dbConnection').sequelize;
+const sequelize = require('../dbConnection');
 
-const Article = sequelize.define('article', {
-  id: { 
-    allowNull: false,
-    autoIncrement: true,
-    primaryKey: true,
-    type: Sequelize.INTEGER
-  },
-  articleId: { type: Sequelize.INTEGER }
-});
-
-const ArticleDetails = sequelize.define('details', {
+const HackerNews = sequelize.define('hackernews', {
   id: { 
     allowNull: false,
     primaryKey: true,
@@ -27,12 +17,9 @@ const ArticleDetails = sequelize.define('details', {
 });
 
 module.exports = {
-  addIds: function(num) {
-    Article.findOrCreate({ where: { articleId: num }})
-  },
-  addArticleDetails: function(val) {
-    ArticleDetails.sync().then(() => {
-      return ArticleDetails.create({
+  createRecord: function(val) {
+    HackerNews.sync().then(() => {
+      return HackerNews.findOrCreate({ where: {
         id: val.id,
         score: val.score,
         title: val.title,
@@ -40,12 +27,12 @@ module.exports = {
         author: val.author,
         time: val.time,
         type: val.type,
-        kids: val.kids || null
-      });
+        kids: val.kids
+      }});
     });
   }, 
   getArticles: function() {
-    return ArticleDetails.findAll({ limit: 50 })
+    return HackerNews.findAll({ limit: 50 })
       .then(article => {
         return article;
       });

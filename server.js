@@ -1,8 +1,12 @@
 const path = require('path');
 const express = require('express');
-const routes = require('./server/routes/routes.js');
+//const router = express.Router();
+//const routes = require('./server/routes/routes.js');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+
+const HackerNews = require('./server/routes/hackernews.js');
+const HacksMozilla = require('./server/routes/hacksmozilla.js')
 
 const port = (process.env.PORT || 3090);
 const app = express();
@@ -16,7 +20,10 @@ const publicPath = express.static(path.join(__dirname, 'public'));
 app.use('/public', publicPath);
 app.get('/', function (_, res) { res.sendFile(indexPath) });*/
 
-routes(app);
+app.use('/hackernews', HackerNews);
+app.use('/hacksmozilla', HacksMozilla);
+
+//routes(app);
 
 
 app.listen(port);

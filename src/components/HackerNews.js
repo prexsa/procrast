@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { List } from 'semantic-ui-react';
 import ListItem from './ListItem';
-import { hackerNewsArticleId } from '../util/database';
+import { hackerNewsArticleId } from '../util/apiCalls';
 // story uri: https://hacker-news.firebaseio.com/v0/item/8863.json?print=pretty
 // top stories uri: https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty
 
@@ -19,8 +19,8 @@ class HackerNews extends React.Component {
   }
 
   componentDidMount() {
-    // hackerNewsArticleId();
-    axios.get(`${ROOT}/articles`)
+    hackerNewsArticleId();
+    axios.get(`${ROOT}/hackernews`)
       .then(response => {
         // console.log('RESPONSE: ', response);
         this.setState({ articles: response.data });

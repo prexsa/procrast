@@ -14,6 +14,7 @@ class SidebarLeft extends React.Component {
       )
     })
   }
+  
   render() {
     return (
       <div>

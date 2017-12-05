@@ -1,13 +1,14 @@
 /***
-  This file is used to insert article records into the postgres database
+  This file makes api calls to grab data from news mediums
 ***/
 
 import axios from 'axios';
 
 const ROOT = 'http://localhost:3090';
 
+// Hacker News
 export const hackerNewsArticleId = () => {
-  axios.get(`${ROOT}/hackernews`)
+  axios.get(`${ROOT}/hackernews/article-id-list`)
     .then(response => {
       const ids = response.data;
       hackerNewsArticleDetails(ids);
@@ -15,7 +16,12 @@ export const hackerNewsArticleId = () => {
 }
 
 const hackerNewsArticleDetails = (ids) => {
-  axios.post(`${ROOT}/insert`, { ids })
+  axios.post(`${ROOT}/hackernews/feed-hackernews`, { ids })
+}
+
+// Hacks Mozilla 
+const hackMozillaFeed = () => {
+  axios.get('/hacksmozilla/feed-hackmozilla')
 }
 
 
