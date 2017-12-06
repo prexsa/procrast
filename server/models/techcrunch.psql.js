@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../dbConnection');
 
-const TechCrunch = sequelize.define('techcrunch', {
+const TechCrunchAndroid = sequelize.define('techcrunch_android', {
   id: {
     autoIncrement: true,
     primaryKey: true,
@@ -16,8 +16,8 @@ const TechCrunch = sequelize.define('techcrunch', {
 module.exports = {
   createRecord: function(val) {
     const inSeconds = val.created / 1000;
-    TechCrunch.sync().then(() => {
-      return TechCrunch.findOrCreate({ where: {
+    TechCrunchAndroid.sync().then(() => {
+      return TechCrunchAndroid.findOrCreate({ where: {
         title: val.title,
         url: val.url,
         time: inSeconds,
@@ -26,7 +26,7 @@ module.exports = {
     })
   },
   getArticles: function() {
-    return TechCrunch.findAll()
+    return TechCrunchAndroid.findAll()
       .then(article => {
         return article;
       });
