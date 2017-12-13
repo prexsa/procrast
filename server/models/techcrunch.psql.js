@@ -13,7 +13,9 @@ const TechCrunchAndroid = sequelize.define('techcrunch_android', {
   description: { type: Sequelize.TEXT }
 });
 
-module.exports = {
+module.exports = TechCrunchAndroid;
+
+/*{
   createRecord: function(val) {
     const inSeconds = val.created / 1000;
     TechCrunchAndroid.sync().then(() => {
@@ -31,4 +33,4 @@ module.exports = {
         return article;
       });
   }
-}
+}*/

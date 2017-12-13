@@ -8,7 +8,7 @@ import TechCrunch from './TechCrunch';
 
 class SidebarLeft extends React.Component {
   renderSiteList() {
-    const sites = ['Hacker News', 'Smashing Magazine', 'Tech Crunch', 'Slashdot', 'Medium', 'lifehacker', 'scotch.io', 'hacks mozilla'];
+    const sites = ['Hacker News', 'Smashing Magazine', 'Tech Crunch', 'Slashdot', 'Medium', 'lifehacker', 'scotch.io', 'hacks mozilla', 'Engadget'];
     return sites.map(name => {
       return (
         <Menu.Item key={name}>{name}</Menu.Item>

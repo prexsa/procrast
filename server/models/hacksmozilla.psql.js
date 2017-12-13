@@ -13,7 +13,9 @@ const HacksMozilla = sequelize.define('hacksmozilla', {
   description: { type: Sequelize.TEXT }
 });
 
-module.exports = {
+module.exports = HacksMozilla; 
+
+/*{
   createRecord: function(val) {
     const inSeconds = val.created / 1000;
     HacksMozilla.sync().then(() => {
@@ -31,4 +33,4 @@ module.exports = {
         return article;
       });
   }
-}
+}*/

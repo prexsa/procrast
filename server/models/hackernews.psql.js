@@ -16,7 +16,9 @@ const HackerNews = sequelize.define('hackernews', {
   kids: { type: Sequelize.ARRAY(Sequelize.INTEGER) }
 });
 
-module.exports = {
+module.exports = HackerNews;
+
+/*module.exports = {
   createRecord: function(val) {
     HackerNews.sync().then(() => {
       return HackerNews.findOrCreate({ where: {
@@ -37,4 +39,4 @@ module.exports = {
         return article;
       });
   }
-}
+}*/
