@@ -25,8 +25,6 @@ app.use('/hackernews', HackerNews);
 app.use('/hacksmozilla', HacksMozilla);
 app.use('/techcrunch', TechCrunch);
 
-//routes(app);
-
 
 app.listen(port);
 console.log(`Listening at http://localhost:${port}`);

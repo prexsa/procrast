@@ -5,7 +5,7 @@ import { techCrunchFeed } from '../util/apiCalls';
 class TechCrunch extends React.Component {
   componentDidMount() {
     techCrunchFeed().then(response => {
-      console.log("TechCrunch: ", response.data.items)
+      //console.log("TechCrunch: ", response.data.items)
     })
   }
 

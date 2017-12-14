@@ -4,6 +4,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const Feed = require('rss-to-json');
 const TechCrunchAndroid = require('../models/techcrunch.psql.js');
+const Articles = require('../models/articles.psql.js');
 
 /*** 
   TechCrunch feed type links
@@ -21,24 +22,18 @@ router.get('/scrape', (req, res) => {
       article.description = cheerio.load(article.description).text().trim();
       //console.log('article: ', article)
       const inSeconds = article.created / 1000;
-      // TechCrunchAndroid.sync()
-        TechCrunchAndroid.findOrCreate({ where: {
+      Articles.sync()
+        Articles.findOrCreate({ where: {
           title: article.title,
           url: article.url,
           time: inSeconds,
-          description: article.description
+          description: article.description,
+          site: 'techcrunch',
         }});
     });
 
     res.send(rss);
   })
-});
-
-router.get('/', (req, res) => {
-  TechCrunchAndroid.findAll()
-    .then(article => {
-      res.send(article);
-    });
 });
 
 module.exports = router;

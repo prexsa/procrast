@@ -5,8 +5,8 @@ import { hackerNewsArticleId, hackMozillaFeed, techCrunchFeed } from '../util/ap
 export default class App extends React.Component {
   componentDidMount() {
     // make all api calls from here
-    //hackerNewsArticleId();
-    //hackMozillaFeed();
+    // hackerNewsArticleId();
+    // hackMozillaFeed();
     techCrunchFeed();
   }
 

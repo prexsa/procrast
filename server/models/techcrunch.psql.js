@@ -14,23 +14,3 @@ const TechCrunchAndroid = sequelize.define('techcrunch_android', {
 });
 
 module.exports = TechCrunchAndroid;
-
-/*{
-  createRecord: function(val) {
-    const inSeconds = val.created / 1000;
-    TechCrunchAndroid.sync().then(() => {
-      return TechCrunchAndroid.findOrCreate({ where: {
-        title: val.title,
-        url: val.url,
-        time: inSeconds,
-        description: val.description
-      }});
-    })
-  },
-  getArticles: function() {
-    return TechCrunchAndroid.findAll()
-      .then(article => {
-        return article;
-      });
-  }
-}*/

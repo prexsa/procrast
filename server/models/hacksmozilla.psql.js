@@ -14,23 +14,3 @@ const HacksMozilla = sequelize.define('hacksmozilla', {
 });
 
 module.exports = HacksMozilla; 
-
-/*{
-  createRecord: function(val) {
-    const inSeconds = val.created / 1000;
-    HacksMozilla.sync().then(() => {
-      return HacksMozilla.findOrCreate({ where: {
-        title: val.title,
-        url: val.url,
-        time: inSeconds,
-        description: val.description
-      }});
-    })
-  },
-  getArticles: function() {
-    return HacksMozilla.findAll()
-      .then(article => {
-        return article;
-      });
-  }
-}*/

@@ -14,16 +14,20 @@ class Main extends React.Component {
 
     this.getHackernews = this.getHackernews.bind(this);
     this.getHacksmozilla = this.getHacksmozilla.bind(this);
+    this.getTechCrunch = this.getTechCrunch.bind(this);
   }
 
   componentDidMount() {
     let that = this;
-    axios.all([this.getHackernews(), this.getHacksmozilla()])
-      .then(axios.spread(function (hackernews, hacksmozilla) {
+    axios.all([this.getHackernews(), this.getHacksmozilla(), this.getTechCrunch()])
+      .then(axios.spread(function (hackernews, hacksmozilla, techcrunch) {
         const news = hackernews.data;
         const mozilla = hacksmozilla.data;
+        const crunch = techcrunch.data;
 
-        let sorted = news.concat(mozilla).sort((a,b) => {
+        console.log('techcrunch: ', crunch)
+
+        let sorted = news.concat(mozilla, crunch).sort((a,b) => {
           return a.time - (b.created / 1000);
         });
 
@@ -39,8 +43,12 @@ class Main extends React.Component {
     return axios.get(`${ROOT}/hackernews`)
   }
 
+  getTechCrunch() {
+    return axios.get(`${ROOT}/techcrunch`)
+  }
+
   render() {
-    // console.log('state: ', this.state.articles)
+    console.log('state: ', this.state.articles)
     if(this.state.articles.length !== 0) {
       const articles = this.state.articles;
       // console.log("ARTICLES: ", articles)

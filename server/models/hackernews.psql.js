@@ -17,26 +17,3 @@ const HackerNews = sequelize.define('hackernews', {
 });
 
 module.exports = HackerNews;
-
-/*module.exports = {
-  createRecord: function(val) {
-    HackerNews.sync().then(() => {
-      return HackerNews.findOrCreate({ where: {
-        id: val.id,
-        score: val.score,
-        title: val.title,
-        url: val.url,
-        author: val.author,
-        time: val.time,
-        type: val.type,
-        kids: val.kids
-      }});
-    });
-  }, 
-  getArticles: function() {
-    return HackerNews.findAll({ limit: 50 })
-      .then(article => {
-        return article;
-      });
-  }
-}*/
