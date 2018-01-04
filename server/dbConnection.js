@@ -6,7 +6,9 @@ const pw = config.postgres.pw;
 const db = 'news' || config.postgres.db;
 const host = config.postgres.host;
 
-const sequelize = new Sequelize(`postgres://${user}:${pw}@${host}:5432/${db}`);
+const sequelize = new Sequelize(`postgres://${user}:${pw}@${host}:5432/${db}`, {
+  logging: false,
+});
 
 sequelize
   .authenticate()

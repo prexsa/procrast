@@ -4,6 +4,7 @@ const axios = require('axios');
 const Feed = require('rss-to-json');
 const HacksMozilla = require('../models/hacksmozilla.psql.js');
 const Articles = require('../models/articles.psql.js');
+const CrawlDetails = require('../models/crawldetail.psql.js');
 
 router.get('/feed-hackmozilla', (req, res) => {
   // get rss feed
@@ -19,7 +20,7 @@ router.get('/feed-hackmozilla', (req, res) => {
         url: article.url,
         time: inSeconds,
         description: article.description,
-        site: 'hacksmozilla',
+        site: 'hacks mozilla',
       }});
     });
     res.send('Hack Mozilla Article Record Created.')

@@ -7,7 +7,7 @@ export default class App extends React.Component {
     // make all api calls from here
     // hackerNewsArticleId();
     // hackMozillaFeed();
-    techCrunchFeed();
+    // techCrunchFeed();
   }
 
   render() {

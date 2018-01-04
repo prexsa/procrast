@@ -20,20 +20,3 @@ const Articles = sequelize.define('articles', {
 });
 
 module.exports = Articles;
-
-
-const HacksMozilla = sequelize.define('hacksmozilla', {
-  id: { 
-    autoIncrement: true,
-    primaryKey: true,
-    type: Sequelize.INTEGER
-  },
-  title: { type: Sequelize.STRING },
-  url: { type: Sequelize.STRING },
-  time: { type: Sequelize.BIGINT },
-  description: { type: Sequelize.TEXT }
-});
-
-
-// 15850359
-// https://hacker-news.firebaseio.com/v0/item/15850359.json?print=pretty

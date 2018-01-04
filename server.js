@@ -8,6 +8,7 @@ const cors = require('cors');
 const HackerNews = require('./server/routes/hackernews.js');
 const HacksMozilla = require('./server/routes/hacksmozilla.js');
 const TechCrunch = require('./server/routes/techcrunch.js');
+const Articles = require('./server/routes/articles.js');
 
 const port = (process.env.PORT || 3090);
 const app = express();
@@ -24,6 +25,7 @@ app.get('/', function (_, res) { res.sendFile(indexPath) });*/
 app.use('/hackernews', HackerNews);
 app.use('/hacksmozilla', HacksMozilla);
 app.use('/techcrunch', TechCrunch);
+app.use('/articles', Articles);
 
 
 app.listen(port);

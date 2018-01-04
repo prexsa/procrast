@@ -5,6 +5,7 @@ const cheerio = require('cheerio');
 const Feed = require('rss-to-json');
 const TechCrunchAndroid = require('../models/techcrunch.psql.js');
 const Articles = require('../models/articles.psql.js');
+const CrawlDetails = require('../models/crawldetail.psql.js');
 
 /*** 
   TechCrunch feed type links
@@ -28,7 +29,7 @@ router.get('/scrape', (req, res) => {
           url: article.url,
           time: inSeconds,
           description: article.description,
-          site: 'techcrunch',
+          site: 'tech crunch',
         }});
     });
 
